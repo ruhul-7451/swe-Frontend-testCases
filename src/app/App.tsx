@@ -10,6 +10,7 @@ export const App = () => {
       <GlobalStyle />
       <GameBox>
         <CampaignBanner />
+      <a href="/learn-react">Learn React</a>
         <StartButton />
       </GameBox>
     </>

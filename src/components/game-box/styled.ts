@@ -14,5 +14,12 @@ export const ContainerStyled = styled.div(
     backgroundColor: '#a5f3fc',
     borderRadius: gameConfig.container.borderRadius,
     boxShadow: '0 0 24px 8px #0284c7',
+    '@media (max-width: 360px)': {
+      width: '250px',
+      borderRadius: '16px',
+    },
+    '@media (max-height: 600px)': {
+      width: '600px',
+    },
   }),
 );

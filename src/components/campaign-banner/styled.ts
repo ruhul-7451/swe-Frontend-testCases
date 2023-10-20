@@ -13,5 +13,9 @@ export const BannerStyled = styled.div(
     padding: gameConfig.campaignBanner.padding,
     backgroundColor: gameConfig.campaignBanner.background,
     color: gameConfig.campaignBanner.textColor,
+    '@media (max-width: 360px)': {
+      width: '70%',
+      fontSize: '12px',
+    },
   }),
 );
