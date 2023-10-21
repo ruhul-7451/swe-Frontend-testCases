@@ -4,6 +4,7 @@ import '@testing-library/jest-dom';
 import { StartButton } from './StartButton';
 import { TestElement } from '../../enums/TestElement';
 import { gameConfig } from '../../config/game-config';
+import 'jest-styled-components';
 
 afterEach(cleanup);
 
@@ -33,5 +34,24 @@ describe('[GAME] StartButton', () => {
     );
     
     alert.mockRestore();
+  });
+
+  it('SHOULD Render Start Button with height 40px, width 40%, font-size 12px, border-radius 10px WHEN browsers viewport width 360px', () => {
+    render(<StartButton />);
+    
+    const startButton = screen.getByTestId(TestElement.START_BUTTON);
+    
+    expect(startButton).toHaveStyleRule('width', '40%', {
+      media: '(max-width: 360px)',
+    });
+    expect(startButton).toHaveStyleRule('height', '40px', {
+      media: '(max-width: 360px)',
+    });
+    expect(startButton).toHaveStyleRule('font-size', '12px', {
+      media: '(max-width: 360px)',
+    });
+    expect(startButton).toHaveStyleRule('border-radius', '10px', {
+      media: '(max-width: 360px)',
+    });
   });
 });

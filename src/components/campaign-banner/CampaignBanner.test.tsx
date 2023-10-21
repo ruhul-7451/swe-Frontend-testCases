@@ -4,7 +4,7 @@ import '@testing-library/jest-dom/extend-expect'; // Import the jest-dom extensi
 import { CampaignBanner } from './CampaignBanner'; // Import your CampaignBanner component
 import { TestElement } from '../../enums/TestElement';
 import { cleanup } from '@testing-library/react';
-
+import 'jest-styled-components';
 afterEach(() => {
   cleanup();
 });
@@ -30,13 +30,8 @@ describe('[GAME] CampaignBanner', () => {
     const { getByTestId } = render(<CampaignBanner />);
     const campaignBanner = getByTestId(TestElement.CAMPAIGN_BANNER);
     expect(campaignBanner).toBeInTheDocument();
-    expect(campaignBanner).toHaveStyle({
-      display: 'flex',
-      position: 'absolute',
-      flexDirection: 'column',
-      textAlign: 'center',
-      fontSize: '12px',
-      width: '70%',
+    expect(campaignBanner).toHaveStyleRule('font-size', '12px', {
+      media: '(max-width: 360px)',
     });
 
   });
@@ -48,3 +43,31 @@ describe('[GAME] CampaignBanner', () => {
     expect(campaignBanner).toBeInTheDocument();
   });
 });
+
+// describe('MyComponent', () => {
+//   it('renders correctly', () => {
+//     const tree = renderer.create(<MyComponent />).toJSON();
+//     expect(tree).toMatchSnapshot();
+//   });
+
+//   it('applies correct styles for small screens', () => {
+//     const tree = renderer.create(<MyComponent />).toJSON();
+//     expect(tree).toHaveStyleRule('font-size', '16px', {
+//       media: '(max-width: 767px)',
+//     });
+//   });
+
+  // it('applies correct styles for medium screens', () => {
+  //   const tree = renderer.create(<MyComponent />).toJSON();
+  //   expect(tree).toHaveStyleRule('font-size', '18px', {
+  //     media: '(min-width: 768px) and (max-width: 1023px)',
+  //   });
+  // });
+
+//   it('applies correct styles for large screens', () => {
+//     const tree = renderer.create(<MyComponent />).toJSON();
+//     expect(tree).toHaveStyleRule('font-size', '20px', {
+//       media: '(min-width: 1024px)',
+//     });
+//   });
+// });

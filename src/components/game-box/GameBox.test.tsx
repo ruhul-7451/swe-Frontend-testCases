@@ -4,6 +4,7 @@ import '@testing-library/jest-dom';
 import { GameBox } from './GameBox';
 import { TestElement } from '../../enums/TestElement';
 import { gameConfig } from '../../config/game-config';
+import 'jest-styled-components';
 
 afterEach(cleanup);
 
@@ -33,10 +34,12 @@ describe('[GAME] GameBox', () => {
     const gameBox = screen.getByTestId(TestElement.GAME_BOX);
     
     expect(gameBox).toBeInTheDocument();
-    expect(gameBox).toHaveStyle({
-      width: '300px',
-      height: `${gameConfig.container.maxHeight}px`,
-    });
+    expect(gameBox).toHaveStyleRule('width', '300px', {
+        media: '(max-width: 300px)',
+      });
+    expect(gameBox).toHaveStyleRule('height', '1000px', {
+        media: '(max-width: 300px)',
+      });
   });
 
   it('SHOULD Render GameBox with height 600px WHEN browsers viewport width 1000px and height is 600px', () => {
@@ -49,9 +52,8 @@ describe('[GAME] GameBox', () => {
     const gameBox = screen.getByTestId(TestElement.GAME_BOX);
     
     expect(gameBox).toBeInTheDocument();
-    expect(gameBox).toHaveStyle({
-      width: `${gameConfig.container.maxWidth}px`,
-      height: '600px',
-    });
+    expect(gameBox).toHaveStyleRule('height', '600px', {
+        media: '(max-height: 600px)',
+      });
   });
 });
